@@ -1,26 +1,32 @@
 type ResultsPropsType = {
-    results: {
-        country: string,
-        cityName: string,
-        temperature: string,
-        conditionText: string,
-        icon: string
-    }
-}
+  results: {
+    country: string;
+    cityName: string;
+    temperature: string;
+    conditionText: string;
+    icon: string;
+  };
+};
 
-const Results = (props: ResultsPropsType) => {
-    return (
-        <div>
-            {props.results.country && <div className="results-country">{props.results.country}</div>}
-            {props.results.cityName && <div className="results-city">{props.results.cityName}</div>}
-            {props.results.temperature && <div className="results-temp">{props.results.temperature} <span>℃</span></div>}
-            {props.results.conditionText && 
-                <div className="results-condition">
-                    <img src={props.results.icon} alt="icon"></img>
-                    <span>{props.results.conditionText}</span>
-                </div>}
+const Results = ({ results }: ResultsPropsType) => {
+  const { country, cityName, temperature, conditionText, icon } = results;
+  return (
+    <>
+      {country && <div className="results-country">{country}</div>}
+      {cityName && <div className="results-city">{cityName}</div>}
+      {temperature && (
+        <div className="results-temp">
+          {temperature} <span>℃</span>
         </div>
-    );
+      )}
+      {conditionText && (
+        <div className="results-condition">
+          <img src={icon} alt="icon"></img>
+          <span>{conditionText}</span>
+        </div>
+      )}
+    </>
+  );
 };
 
 export default Results;
